@@ -44,3 +44,62 @@ Includes:
 ## Method 1 — BetterDiscord
 
 1. Download:
+
+2. Open Discord
+
+3. Go to:
+
+4. Place the file inside.
+
+5. Enable **Omni-Man**.
+
+---
+
+# 📂 Repository Structure
+
+OmniMan-Theme
+│
+├── OmniMan.theme.css
+├── README.md
+│
+├── fonts
+│ └── WoodBlockCG-Regular.otf
+│
+└── images
+└── omni-man-wallpaper.png
+
+
+---
+
+# 🖼️ Preview
+
+The theme uses a custom Omni-Man background with:
+
+- Red cinematic lighting
+- Dark transparent panels
+- Comic inspired UI
+
+---
+
+# ⚙️ Credits
+
+Theme created by:
+
+**ZZboi124**
+
+Powered by:
+
+- FrostedGlass
+- RadialStatus
+- BetterDiscord
+
+---
+
+# ⚠️ Disclaimer
+
+This is a fan-made theme created for personal customization.
+
+All character artwork belongs to its respective owners.
+
+
+
