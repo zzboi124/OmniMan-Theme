@@ -1,41 +1,41 @@
 /**
  * @name Omni-Man
  * @author ZZboi124
- * @version 1.0.0
+ * @version 1.0.1
  * @description Omni-Man inspired FrostedGlass BetterDiscord theme with custom Wood Block CG font.
  * @website https://github.com/zzboi124/OmniMan-Theme
  * @source https://raw.githubusercontent.com/zzboi124/OmniMan-Theme/main/OmniMan.theme.css
  */
 
-@font-face {
-    font-family: "Wood Block CG Regular";
-    src: url("https://raw.githubusercontent.com/zzboi124/OmniMan-Theme/main/fonts/WoodBlockCG-Regular.otf") format("opentype");
-    font-weight: normal;
-    font-style: normal;
-}
-
 @import url('https://discordstyles.github.io/FrostedGlass/FrostedGlass.css');
 @import url('https://discordstyles.github.io/RadialStatus/RadialStatus.css');
 @import url('https://discordstyles.github.io/Addons/windows-titlebar.css');
 
+@font-face {
+    font-family: "Wood Block CG Regular";
+    src: url("https://cdn.jsdelivr.net/gh/zzboi124/OmniMan-Theme@main/fonts/WoodBlockCG-Regular.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 :root {
-  --background-image: url('https://raw.githubusercontent.com/zzboi124/OmniMan-Theme/main/images/omni-man-wallpaper.png');
+  --background-image: url("https://cdn.jsdelivr.net/gh/zzboi124/OmniMan-Theme@main/images/omni-man-wallpaper.png") !important;
   --background-image-blur: 2px;
   --background-image-size: cover;
   --background-image-position: center;
 
-  --popout-image: url('https://raw.githubusercontent.com/zzboi124/OmniMan-Theme/main/images/omni-man-wallpaper.png');
+  --popout-image: url("https://cdn.jsdelivr.net/gh/zzboi124/OmniMan-Theme@main/images/omni-man-wallpaper.png") !important;
   --popout-image-blur: 13px;
   --popout-image-size: cover;
   --popout-image-position: center;
 
-  --overlay-image: url('https://raw.githubusercontent.com/zzboi124/OmniMan-Theme/main/images/omni-man-wallpaper.png');
+  --overlay-image: url("https://cdn.jsdelivr.net/gh/zzboi124/OmniMan-Theme@main/images/omni-man-wallpaper.png") !important;
   --overlay-image-blur: 5px;
   --overlay-image-size: cover;
   --overlay-image-position: center;
 
-  --home-button-image: url('https://raw.githubusercontent.com/zzboi124/OmniMan-Theme/main/images/omni-man-wallpaper.png');
+  --home-button-image: url("https://cdn.jsdelivr.net/gh/zzboi124/OmniMan-Theme@main/images/omni-man-wallpaper.png") !important;
   --home-button-size: cover;
   --home-button-position: center;
 
@@ -191,6 +191,16 @@ h3 {
 
 }
 
-:root {
-    --background-image: url("https://cdn.jsdelivr.net/gh/zzboi124/OmniMan-Theme@main/images/omni-man-wallpaper.png") !important;
+
+/* ===========================
+   Background Image Fallback
+   (Forces the background var onto the app root
+   in case FrostedGlass doesn't apply it directly)
+   =========================== */
+
+[class*="appMount"] {
+    background-image: var(--background-image) !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
 }
