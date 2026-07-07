@@ -1,128 +1,192 @@
 /**
- * @name Omni-Man 
+ * @name Omni-Man
  * @author ZZboi124
  * @version 1.0.0
- * @description Omni-Man inspired  theme with custom Invincible title screen font.
- * @website https://github.com/YourUsername/OmniMan-Frost
- * @source https://github.com/YourUsername/OmniMan-Frost/blob/main/OmniMan.theme.css
- * @authorId ZAMFUN#8817
+ * @description Omni-Man inspired FrostedGlass BetterDiscord theme with custom Wood Block CG font.
+ * @website https://github.com/zzboi124/OmniMan-Theme
+ * @source https://github.com/zzboi124/OmniMan-Theme/blob/main/OmniMan.theme.css
  */
+
+@font-face {
+    font-family: "Wood Block CG Regular";
+    src: url("https://raw.githubusercontent.com/zzboi124/OmniMan-Theme/main/fonts/WoodBlockCG-Regular.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
 
 @import url('https://discordstyles.github.io/FrostedGlass/FrostedGlass.css');
 @import url('https://discordstyles.github.io/RadialStatus/RadialStatus.css');
 @import url('https://discordstyles.github.io/Addons/windows-titlebar.css');
 
+
 :root {
-  --background-image: url('https://wallpaperbat.com/img/147943401-omni-man-wallpaper-2560x1440.png');
+  --background-image: url('https://raw.githubusercontent.com/zzboi124/OmniMan-Theme/main/images/omni-man-wallpaper.png');
   --background-image-blur: 2px;
   --background-image-size: cover;
   --background-image-position: center;
-  --popout-image: url('https://wallpaperbat.com/img/147943401-omni-man-wallpaper-2560x1440.png');
+
+  --popout-image: url('https://raw.githubusercontent.com/zzboi124/OmniMan-Theme/main/images/omni-man-wallpaper.png');
   --popout-image-blur: 13px;
   --popout-image-size: cover;
   --popout-image-position: center;
-  --overlay-image: url('https://wallpaperbat.com/img/147943401-omni-man-wallpaper-2560x1440.png');
+
+  --overlay-image: url('https://raw.githubusercontent.com/zzboi124/OmniMan-Theme/main/images/omni-man-wallpaper.png');
   --overlay-image-blur: 5px;
   --overlay-image-size: cover;
   --overlay-image-position: center;
-  --home-button-image: url('https://wallpaperbat.com/img/147943401-omni-man-wallpaper-2560x1440.png');
+
+  --home-button-image: url('https://raw.githubusercontent.com/zzboi124/OmniMan-Theme/main/images/omni-man-wallpaper.png');
   --home-button-size: cover;
   --home-button-position: center;
+
   --serverlist-brightness: 0.56;
   --left-brightness: 0.56;
   --middle-brightness: 0.56;
   --right-brightness: 0.56;
   --overlay-brightness: 0.56;
+
   --gradient-primary: 186,106,103;
   --gradient-secondary: 189,47,37;
+  --gradient-direction: 360deg;
+
   --link-colour: #FFFFFF;
   --scrollbar-colour: rgb(255,255,255,0.3);
-  --gradient-direction: 360deg;
+
   --tint-colour: 255,51,159;
   --tint-brightness: 0;
-  --font: Wood Block CG Regular;
+
+  --font: "Wood Block CG Regular";
+
   --window-padding: 19px;
   --window-roundness: 32px;
+
   --update-notice-1: none;
+
   --rs-small-spacing: 0px;
   --rs-medium-spacing: 8px;
   --rs-large-spacing: 5px;
+
   --rs-small-width: 3px;
   --rs-medium-width: 2px;
   --rs-large-width: 2px;
+
   --rs-avatar-shape: 50%;
+
   --rs-online-color: #43b581;
   --rs-idle-color: #faa61a;
   --rs-dnd-color: #f04747;
   --rs-offline-color: #636b75;
   --rs-streaming-color: #643da7;
+
   --rs-phone-visible: block;
 }
 
-/* Any custom CSS below here */
 
-/* Improve Wood Block readability */
+/* ===========================
+   Wood Block Font Fix
+   =========================== */
 
 *,
 *::before,
 *::after {
     font-family: "Wood Block CG Regular" !important;
-    font-weight: 400 !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+
     text-shadow: none !important;
 
     -webkit-font-smoothing: antialiased !important;
     -moz-osx-font-smoothing: grayscale !important;
+
     text-rendering: geometricPrecision !important;
 }
 
-/* Slightly larger text everywhere */
+
+/* ===========================
+   General Text
+   =========================== */
+
 body {
     font-size: 107% !important;
     letter-spacing: 0.08em !important;
     line-height: 1.3 !important;
 }
 
-/* Chat messages */
+
+/* ===========================
+   Chat Messages
+   =========================== */
+
 [class*="messageContent"] {
     font-size: 18px !important;
     letter-spacing: 0.08em !important;
     line-height: 1.5 !important;
 }
 
-/* Usernames above chat messages */
+
+/* ===========================
+   Message Usernames
+   =========================== */
+
 [class*="username"] {
     font-size: 17px !important;
     letter-spacing: 0.08em !important;
 }
 
-/* DM names (left sidebar) */
+
+/* ===========================
+   DM Sidebar
+   =========================== */
+
 [class*="privateChannels"] [class*="name"] {
     font-size: 17px !important;
     letter-spacing: 0.08em !important;
 }
 
-/* Friends list names */
+
+/* ===========================
+   Friends List
+   =========================== */
+
 [class*="peopleListItem"] [class*="username"],
 [class*="peopleListItem"] [class*="name"] {
+
     font-size: 17px !important;
     letter-spacing: 0.08em !important;
 }
 
-/* Channel names */
+
+/* ===========================
+   Channels
+   =========================== */
+
+[class*="channelName"],
 [class*="name"] {
+
     font-size: 16px !important;
     letter-spacing: 0.08em !important;
 }
 
-/* Member list */
+
+/* ===========================
+   Members
+   =========================== */
+
 [class*="member"] [class*="username"] {
+
     font-size: 16px !important;
     letter-spacing: 0.08em !important;
 }
 
-/* Server/channel headers */
+
+/* ===========================
+   Headers
+   =========================== */
+
 h1,
 h2,
 h3 {
+
     letter-spacing: 0.10em !important;
+
 }
