@@ -190,3 +190,7 @@ h3 {
     letter-spacing: 0.10em !important;
 
 }
+
+:root {
+    --background-image: url("https://cdn.jsdelivr.net/gh/zzboi124/OmniMan-Theme@main/images/omni-man-wallpaper.png") !important;
+}
