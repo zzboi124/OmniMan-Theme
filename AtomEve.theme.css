@@ -1,0 +1,344 @@
+/**
+ * @name Atom Eve
+ * @author ZZboi124
+ * @version 1.0.0
+ * @description Atom Eve (Samantha Wilkins) inspired FrostedGlass BetterDiscord theme with custom Wood Block CG font, soft pink/white telekinetic shimmer effects.
+ * @website https://github.com/zzboi124/AtomEve-Theme
+ * @source https://raw.githubusercontent.com/zzboi124/AtomEve-Theme/main/AtomEve.theme.css
+ */
+
+@import url('https://discordstyles.github.io/FrostedGlass/FrostedGlass.css');
+@import url('https://discordstyles.github.io/RadialStatus/RadialStatus.css');
+@import url('https://discordstyles.github.io/Addons/windows-titlebar.css');
+
+@font-face {
+    font-family: "Wood Block CG Regular";
+    src: url("https://cdn.jsdelivr.net/gh/zzboi124/AtomEve-Theme@main/fonts/WoodBlockCG-Regular.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+:root {
+  /* NOTE: swap this filename for your own Atom Eve wallpaper once uploaded */
+  --background-image: url("https://cdn.jsdelivr.net/gh/zzboi124/AtomEve-Theme@main/images/atomeve-wallpaper.png") !important;
+  --background-image-blur: 2px;
+  --background-image-size: cover;
+  --background-image-position: center;
+
+  --popout-image: url("https://cdn.jsdelivr.net/gh/zzboi124/AtomEve-Theme@main/images/atomeve-wallpaper.png") !important;
+  --popout-image-blur: 13px;
+  --popout-image-size: cover;
+  --popout-image-position: center;
+
+  --overlay-image: url("https://cdn.jsdelivr.net/gh/zzboi124/AtomEve-Theme@main/images/atomeve-wallpaper.png") !important;
+  --overlay-image-blur: 5px;
+  --overlay-image-size: cover;
+  --overlay-image-position: center;
+
+  --home-button-image: url("https://cdn.jsdelivr.net/gh/zzboi124/AtomEve-Theme@main/images/atomeve-wallpaper.png") !important;
+  --home-button-size: cover;
+  --home-button-position: center;
+
+  --serverlist-brightness: 0.68;
+  --left-brightness: 0.68;
+  --middle-brightness: 0.68;
+  --right-brightness: 0.68;
+  --overlay-brightness: 0.68;
+
+  /* Soft pink -> white gradient, matching the suit */
+  --gradient-primary: 232,120,160;
+  --gradient-secondary: 255,255,255;
+  --gradient-direction: 360deg;
+
+  --link-colour: #FFFFFF;
+  --scrollbar-colour: rgb(255,255,255,0.3);
+
+  --tint-colour: 232,120,160;
+  --tint-brightness: 0;
+
+  --font: "Wood Block CG Regular";
+
+  --window-padding: 19px;
+  --window-roundness: 32px;
+
+  --update-notice-1: none;
+
+  --rs-small-spacing: 0px;
+  --rs-medium-spacing: 8px;
+  --rs-large-spacing: 5px;
+
+  --rs-small-width: 3px;
+  --rs-medium-width: 2px;
+  --rs-large-width: 2px;
+
+  --rs-avatar-shape: 50%;
+
+  --rs-online-color: #43b581;
+  --rs-idle-color: #faa61a;
+  --rs-dnd-color: #f04747;
+  --rs-offline-color: #636b75;
+  --rs-streaming-color: #643da7;
+
+  --rs-phone-visible: block;
+
+  /* Atom Eve accent palette */
+  --eve-pink: #e878a0;
+  --eve-pink-bright: #ff9fc4;
+  --eve-white: #ffffff;
+  --eve-glow: rgba(255, 159, 196, 0.5);
+  --eve-soft-glow: rgba(255, 255, 255, 0.35);
+}
+
+
+/* ===========================
+   Wood Block Font Fix
+   =========================== */
+
+*,
+*::before,
+*::after {
+    font-family: "Wood Block CG Regular" !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    text-shadow: none !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: geometricPrecision !important;
+}
+
+
+/* ===========================
+   General Text
+   =========================== */
+
+body {
+    font-size: 107% !important;
+    letter-spacing: 0.08em !important;
+    line-height: 1.3 !important;
+}
+
+
+/* ===========================
+   Chat Messages / Usernames / Sidebar
+   =========================== */
+
+[class*="messageContent"] {
+    font-size: 18px !important;
+    letter-spacing: 0.08em !important;
+    line-height: 1.5 !important;
+}
+
+[class*="username"] {
+    font-size: 17px !important;
+    letter-spacing: 0.08em !important;
+    color: var(--eve-pink-bright) !important;
+}
+
+[class*="privateChannels"] [class*="name"] {
+    font-size: 17px !important;
+    letter-spacing: 0.08em !important;
+}
+
+[class*="peopleListItem"] [class*="username"],
+[class*="peopleListItem"] [class*="name"] {
+    font-size: 17px !important;
+    letter-spacing: 0.08em !important;
+}
+
+[class*="channelName"],
+[class*="name"] {
+    font-size: 16px !important;
+    letter-spacing: 0.08em !important;
+}
+
+[class*="member"] [class*="username"] {
+    font-size: 16px !important;
+    letter-spacing: 0.08em !important;
+}
+
+
+/* ===========================
+   Headers - soft shimmer, like matter forming mid-air
+   =========================== */
+
+@keyframes eve-shimmer {
+    0%, 100% { text-shadow: 0 0 5px var(--eve-soft-glow), 0 0 2px var(--eve-pink-bright); }
+    50%      { text-shadow: 0 0 12px var(--eve-glow), 0 0 4px var(--eve-white); }
+}
+
+h1, h2, h3 {
+    color: #ffffff !important;
+    letter-spacing: 0.10em !important;
+    animation: eve-shimmer 5s ease-in-out infinite;
+}
+
+
+/* ===========================
+   Background Image Fallback
+   =========================== */
+
+[class*="appMount"] {
+    background-image: var(--background-image) !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+
+/* ===========================
+   Telekinetic Shimmer Keyframes
+   Softer / slower than a "power pulse" - more of a
+   gentle drifting glow, like matter being reshaped
+   =========================== */
+
+@keyframes eve-drift-glow {
+    0%   { box-shadow: 0 0 4px 0 var(--eve-glow); transform: translateY(0px); }
+    50%  { box-shadow: 0 0 14px 3px var(--eve-glow); transform: translateY(-1px); }
+    100% { box-shadow: 0 0 4px 0 var(--eve-glow); transform: translateY(0px); }
+}
+
+@keyframes eve-gradient-drift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+/* ===========================
+   Selected / Hovered Server Icon
+   =========================== */
+
+[class*="listItem"] [class*="pill"],
+[class*="wrapper"][class*="selected"] {
+    background-color: var(--eve-pink-bright) !important;
+}
+
+[class*="guilds"] [class*="listItem"]:hover [class*="wrapper"],
+[class*="guilds"] [class*="listItem"] [class*="wrapper"][aria-selected="true"] {
+    animation: eve-drift-glow 3s ease-in-out infinite;
+    border-radius: 35% !important;
+    transition: border-radius 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+/* ===========================
+   Active Channel Bar
+   Pink-to-white drifting gradient
+   =========================== */
+
+[class*="modeSelected"],
+[class*="selected"][class*="link"] {
+    background: linear-gradient(120deg, var(--eve-pink), var(--eve-pink-bright), var(--eve-white), var(--eve-pink-bright)) !important;
+    background-size: 300% 300% !important;
+    animation: eve-gradient-drift 7s ease infinite;
+    box-shadow: 0 0 10px var(--eve-glow) !important;
+}
+
+
+/* ===========================
+   Mentions / Pings - soft pink highlight
+   =========================== */
+
+[class*="mentioned"] {
+    background-color: rgba(255, 159, 196, 0.16) !important;
+    border-left: 3px solid var(--eve-pink-bright) !important;
+    box-shadow: inset 0 0 12px rgba(255, 159, 196, 0.22);
+}
+
+
+/* ===========================
+   Embeds - soft pink glow border
+   =========================== */
+
+[class*="embedFull"],
+[class*="embedWrapper"] {
+    border-left: 3px solid var(--eve-pink-bright) !important;
+    background: rgba(30, 14, 22, 0.5) !important;
+    box-shadow: -4px 0 10px -4px var(--eve-glow);
+    border-radius: 6px !important;
+}
+
+
+/* ===========================
+   Code Blocks
+   =========================== */
+
+code, pre {
+    border: 1px solid rgba(255, 159, 196, 0.35) !important;
+    background: rgba(24, 10, 16, 0.55) !important;
+    box-shadow: 0 0 6px rgba(255, 159, 196, 0.15) inset;
+}
+
+
+/* ===========================
+   Spoilers
+   =========================== */
+
+[class*="spoilerContent"] {
+    background: linear-gradient(135deg, #200e16, #3a1526) !important;
+    border: 1px solid var(--eve-pink) !important;
+}
+
+
+/* ===========================
+   Buttons - soft glow hover
+   =========================== */
+
+button[class*="button"]:hover,
+[class*="lookFilled"][class*="colorBrand"]:hover {
+    box-shadow: 0 0 10px var(--eve-glow) !important;
+    filter: brightness(1.08);
+    transition: box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+
+/* ===========================
+   Custom Scrollbar - pink/white gradient
+   =========================== */
+
+::-webkit-scrollbar {
+    width: 8px !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--eve-white), var(--eve-pink-bright)) !important;
+    border-radius: 8px !important;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+
+/* ===========================
+   Typing Indicator
+   =========================== */
+
+[class*="typing"] {
+    color: var(--eve-pink-bright) !important;
+}
+
+
+/* ===========================
+   Online Status Ring
+   =========================== */
+
+[class*="status"][class*="online"] {
+    animation: eve-drift-glow 3.5s ease-in-out infinite;
+    border-radius: 50%;
+}
+
+
+/* ===========================
+   Reduced Motion Respect
+   =========================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
