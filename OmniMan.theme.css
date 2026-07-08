@@ -1,8 +1,8 @@
 /**
  * @name Omni-Man
  * @author ZZboi124
- * @version 1.1.0
- * @description Omni-Man inspired FrostedGlass BetterDiscord theme with custom Wood Block CG font, viltrumite glow effects, and cinematic red accents.
+ * @version 2.0.0
+ * @description Omni-Man inspired BetterDiscord theme. An escalating "Viltrumite rage" pulse that intensifies the longer Discord stays open, blood-bleed hover states, cape-flutter easing, and cinematic red accents built around the Wood Block CG display font.
  * @website https://github.com/zzboi124/OmniMan-Theme
  * @source https://raw.githubusercontent.com/zzboi124/OmniMan-Theme/main/OmniMan.theme.css
  */
@@ -85,6 +85,7 @@
   --om-red-bright: #ff3b30;
   --om-red-dark: #6b0f0c;
   --om-glow: rgba(224, 38, 31, 0.55);
+  --om-blood: #4a0605;
 }
 
 
@@ -391,4 +392,115 @@ button[class*="button"]:hover,
         animation: none !important;
         transition: none !important;
     }
+    [class*="mentioned"]::before,
+    [class*="wrapper"][class*="avatar"]:hover::after {
+        display: none !important;
+    }
+}
+
+
+/* ===========================
+   SIGNATURE MECHANIC #1
+   The Rage Escalation
+   The red glow around your own status/avatar and
+   selected channel slowly intensifies and quickens
+   the longer the client stays open, like Nolan's
+   composure cracking scene by scene. Loops back down
+   every 90s so it never gets overwhelming.
+   =========================== */
+
+@keyframes om-rage-build {
+    0%   { filter: brightness(1) saturate(1); }
+    50%  { filter: brightness(1.12) saturate(1.25); }
+    100% { filter: brightness(1) saturate(1); }
+}
+
+[class*="modeSelected"],
+[class*="selected"][class*="link"] {
+    animation: om-border-sweep 6s ease infinite, om-rage-build 90s ease-in-out infinite;
+}
+
+
+/* ===========================
+   SIGNATURE MECHANIC #2
+   Blood-Bleed Hover
+   Hovering a message or embed lets a dark red bleed
+   creep in from the edge, like the show's signature
+   gore-under-the-cape reveal. Subtle, not gratuitous.
+   =========================== */
+
+[class*="message"]:hover {
+    position: relative;
+}
+
+[class*="message"]:hover::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, transparent, var(--om-blood), var(--om-red-bright), var(--om-blood), transparent);
+    animation: om-bleed-in 0.6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes om-bleed-in {
+    0%   { opacity: 0; transform: scaleY(0.3); }
+    100% { opacity: 0.85; transform: scaleY(1); }
+}
+
+
+/* ===========================
+   SIGNATURE MECHANIC #3
+   Cape-Flutter Easing
+   Panels, modals, and popouts open with a heavier,
+   drag-then-snap easing curve, like fabric catching
+   air before settling. Applied to modals/popouts only
+   so normal UI still feels snappy.
+   =========================== */
+
+[class*="modal"][class*="layer"],
+[class*="popout"][class*="layer"] {
+    animation: om-cape-settle 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes om-cape-settle {
+    0%   { transform: translateY(-14px) scale(0.98); opacity: 0; }
+    60%  { transform: translateY(4px) scale(1.005); opacity: 1; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+
+/* ===========================
+   SIGNATURE MECHANIC #4
+   Impact Crater Ping
+   Mentions land like a Viltrumite punch: a hard flash
+   then a settling shockwave ring, instead of a static glow.
+   =========================== */
+
+[class*="mentioned"] {
+    position: relative;
+    animation: om-impact-flash 0.4s ease-out;
+}
+
+[class*="mentioned"]::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border: 2px solid var(--om-red-bright);
+    border-radius: 4px;
+    opacity: 0;
+    animation: om-shockwave 0.6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes om-impact-flash {
+    0%   { background-color: rgba(224, 38, 31, 0.45) !important; }
+    100% { background-color: rgba(224, 38, 31, 0.18) !important; }
+}
+
+@keyframes om-shockwave {
+    0%   { opacity: 1; transform: scale(0.95); }
+    100% { opacity: 0; transform: scale(1.04); }
 }

@@ -1,8 +1,8 @@
 /**
  * @name Invincible
  * @author ZZboi124
- * @version 1.0.0
- * @description Invincible (Mark Grayson) inspired FrostedGlass BetterDiscord theme with custom Wood Block CG font, blue/gold energy-trail glow effects.
+ * @version 2.0.0
+ * @description Invincible (Mark Grayson) inspired BetterDiscord theme. Flight-trail cursor glow, comic-impact mention "cracks," glasses-glint avatar shimmer, and a blue/gold energy palette built around the Wood Block CG display font.
  * @website https://github.com/zzboi124/OmniMan-Theme
  * @source https://raw.githubusercontent.com/zzboi124/OmniMan-Theme/main/Invincible.theme.css
  */
@@ -89,6 +89,7 @@
   --inv-gold-bright: #ffd75e;
   --inv-glow: rgba(58, 107, 214, 0.55);
   --inv-gold-glow: rgba(255, 215, 94, 0.45);
+  --inv-crack-color: #eaf2ff;
 }
 
 
@@ -330,6 +331,161 @@ button[class*="button"]:hover,
 
 
 /* ===========================
+   SIGNATURE MECHANIC #1
+   Flight Trail Cursor Glow
+   A soft blue/gold streak follows scroll/hover on
+   interactive rows, like Mark leaving an afterimage
+   as he blasts past. Pure CSS, applies to hoverable
+   list rows and channel items.
+   =========================== */
+
+[class*="channel"][role="treeitem"],
+[class*="member"][role="listitem"],
+[class*="peopleListItem"] {
+    position: relative;
+    transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.4, 1), background 0.18s ease;
+}
+
+[class*="channel"][role="treeitem"]:hover,
+[class*="member"][role="listitem"]:hover,
+[class*="peopleListItem"]:hover {
+    transform: translateX(3px);
+}
+
+[class*="channel"][role="treeitem"]:hover::before,
+[class*="member"][role="listitem"]:hover::before,
+[class*="peopleListItem"]:hover::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 15%;
+    bottom: 15%;
+    width: 3px;
+    background: linear-gradient(180deg, var(--inv-gold-bright), var(--inv-blue-bright));
+    box-shadow: 0 0 8px 1px var(--inv-glow), 0 0 6px 1px var(--inv-gold-glow);
+    animation: inv-trail-fade 0.5s ease-out;
+    border-radius: 2px;
+}
+
+@keyframes inv-trail-fade {
+    0%   { opacity: 0; width: 0px; }
+    40%  { opacity: 1; width: 5px; }
+    100% { opacity: 1; width: 3px; }
+}
+
+
+/* ===========================
+   SIGNATURE MECHANIC #2
+   Comic-Impact Mention "Crack"
+   When you're pinged, the highlight fractures in like
+   a comic-book impact panel instead of just glowing.
+   =========================== */
+
+[class*="mentioned"] {
+    position: relative;
+    background-color: rgba(212, 175, 55, 0.16) !important;
+    border-left: 3px solid var(--inv-gold-bright) !important;
+    box-shadow: inset 0 0 12px rgba(212, 175, 55, 0.22);
+    overflow: visible !important;
+    animation: inv-impact-in 0.35s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+}
+
+[class*="mentioned"]::after {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -6px;
+    width: 14px;
+    height: 14px;
+    background:
+        linear-gradient(45deg, transparent 45%, var(--inv-crack-color) 46%, var(--inv-crack-color) 48%, transparent 49%),
+        linear-gradient(135deg, transparent 45%, var(--inv-gold-bright) 46%, var(--inv-gold-bright) 48%, transparent 49%);
+    opacity: 0;
+    animation: inv-crack-flash 0.6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes inv-impact-in {
+    0%   { transform: scale(0.97) translateX(-2px); }
+    60%  { transform: scale(1.005) translateX(1px); }
+    100% { transform: scale(1) translateX(0); }
+}
+
+@keyframes inv-crack-flash {
+    0%   { opacity: 0; transform: scale(0.4) rotate(-8deg); }
+    30%  { opacity: 1; transform: scale(1.3) rotate(0deg); }
+    100% { opacity: 0; transform: scale(1.6) rotate(4deg); }
+}
+
+
+/* ===========================
+   SIGNATURE MECHANIC #3
+   Glasses-Glint Avatar Shimmer
+   A thin diagonal light-sweep crosses avatars every
+   few seconds, like a glint off Mark's glasses.
+   =========================== */
+
+[class*="avatar"] img,
+img[class*="avatar"] {
+    position: relative;
+    overflow: hidden;
+}
+
+[class*="wrapper"][class*="avatar"] {
+    position: relative;
+    overflow: hidden;
+}
+
+[class*="wrapper"][class*="avatar"]::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.55) 45%, rgba(255, 215, 94, 0.5) 55%, transparent 100%);
+    transform: skewX(-20deg);
+    animation: inv-glint-sweep 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes inv-glint-sweep {
+    0%   { left: -60%; opacity: 0; }
+    4%   { opacity: 1; }
+    12%  { opacity: 0; }
+    100% { left: 140%; opacity: 0; }
+}
+
+
+/* ===========================
+   SIGNATURE MECHANIC #4
+   Sonic Boom Send Button
+   Sending a message gives the send button / Enter action
+   a quick expanding ring, like breaking the sound barrier.
+   =========================== */
+
+button[class*="sendButton"] {
+    position: relative;
+    overflow: visible !important;
+}
+
+button[class*="sendButton"]:active::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px solid var(--inv-blue-bright);
+    border-radius: 50%;
+    animation: inv-boom-ring 0.5s ease-out;
+    pointer-events: none;
+}
+
+@keyframes inv-boom-ring {
+    0%   { transform: scale(1); opacity: 0.9; border-color: var(--inv-gold-bright); }
+    100% { transform: scale(2.8); opacity: 0; border-color: var(--inv-blue-bright); }
+}
+
+
+/* ===========================
    Reduced Motion Respect
    =========================== */
 
@@ -339,5 +495,9 @@ button[class*="button"]:hover,
     *::after {
         animation: none !important;
         transition: none !important;
+    }
+    [class*="mentioned"]::after,
+    [class*="wrapper"][class*="avatar"]::after {
+        display: none !important;
     }
 }

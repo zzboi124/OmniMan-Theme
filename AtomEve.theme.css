@@ -1,8 +1,8 @@
 /**
  * @name Atom Eve
  * @author ZZboi124
- * @version 1.0.0
- * @description Atom Eve (Samantha Wilkins) inspired FrostedGlass BetterDiscord theme with custom Wood Block CG font, soft pink/white telekinetic shimmer effects.
+ * @version 2.0.0
+ * @description Atom Eve (Samantha Wilkins) inspired BetterDiscord theme. Messages assemble in from scattered "matter" particles, a telekinetic shimmer trail follows scroll, and hover states bloom outward like her constructs forming mid-air — all wrapped in a soft pink/white palette with the Wood Block CG display font.
  * @website https://github.com/zzboi124/OmniMan-Theme
  * @source https://raw.githubusercontent.com/zzboi124/OmniMan-Theme/main/AtomEve.theme.css
  */
@@ -341,4 +341,145 @@ button[class*="button"]:hover,
         animation: none !important;
         transition: none !important;
     }
+    [class*="messageListItem"],
+    [class*="wrapper"][class*="avatar"]:hover::after {
+        animation: none !important;
+        opacity: 1 !important;
+    }
+}
+
+
+/* ===========================
+   SIGNATURE MECHANIC #1
+   Matter Assembly
+   New messages fade/scale in like Eve's constructs -
+   materializing from scattered matter rather than
+   just sliding into place.
+   =========================== */
+
+@keyframes eve-materialize {
+    0%   { opacity: 0; transform: scale(0.94) translateY(6px); filter: blur(3px); }
+    60%  { opacity: 1; filter: blur(0.5px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+}
+
+[class*="messageListItem"] {
+    animation: eve-materialize 0.35s cubic-bezier(0.22, 0.9, 0.35, 1);
+}
+
+
+/* ===========================
+   SIGNATURE MECHANIC #2
+   Telekinetic Hover Bloom
+   Hovering a message lets a soft pink construct-outline
+   bloom outward from the edge, like Eve shaping matter
+   around the cursor.
+   =========================== */
+
+[class*="message"]:hover {
+    position: relative;
+}
+
+[class*="message"]:hover::after {
+    content: "";
+    position: absolute;
+    left: -4px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, transparent, var(--eve-pink-bright), var(--eve-white), var(--eve-pink-bright), transparent);
+    box-shadow: 0 0 10px 1px var(--eve-glow);
+    animation: eve-bloom-in 0.4s ease-out;
+    pointer-events: none;
+    border-radius: 2px;
+}
+
+@keyframes eve-bloom-in {
+    0%   { opacity: 0; transform: scaleY(0.4); }
+    100% { opacity: 0.9; transform: scaleY(1); }
+}
+
+
+/* ===========================
+   SIGNATURE MECHANIC #3
+   Scroll Shimmer Trail
+   A faint pink/white shimmer follows the scrollbar
+   thumb as you scroll, like telekinetic residue.
+   =========================== */
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--eve-white), var(--eve-pink-bright)) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 0 6px var(--eve-soft-glow);
+    transition: box-shadow 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    box-shadow: 0 0 12px var(--eve-glow);
+}
+
+
+/* ===========================
+   SIGNATURE MECHANIC #4
+   Constructed Avatar Ring
+   Avatars get a thin rotating dashed ring on hover,
+   like a small telekinetic construct holding itself
+   together around her image.
+   =========================== */
+
+[class*="wrapper"][class*="avatar"] {
+    position: relative;
+}
+
+[class*="wrapper"][class*="avatar"]::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 1.5px dashed var(--eve-pink-bright);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    animation: eve-ring-spin 6s linear infinite;
+    pointer-events: none;
+}
+
+[class*="wrapper"][class*="avatar"]:hover::after {
+    opacity: 0.8;
+}
+
+@keyframes eve-ring-spin {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+/* ===========================
+   SIGNATURE MECHANIC #5
+   Send = Small Construct Burst
+   Sending a message gives a tiny particle-scatter
+   burst near the send button, like matter dispersing
+   after she finishes shaping something.
+   =========================== */
+
+button[class*="sendButton"] {
+    position: relative;
+    overflow: visible !important;
+}
+
+button[class*="sendButton"]:active::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    background:
+        radial-gradient(circle 2px at 20% 30%, var(--eve-pink-bright) 90%, transparent),
+        radial-gradient(circle 2px at 70% 20%, var(--eve-white) 90%, transparent),
+        radial-gradient(circle 2px at 40% 80%, var(--eve-pink-bright) 90%, transparent),
+        radial-gradient(circle 2px at 85% 70%, var(--eve-white) 90%, transparent);
+    animation: eve-burst 0.5s ease-out;
+    pointer-events: none;
+}
+
+@keyframes eve-burst {
+    0%   { opacity: 1; transform: scale(0.3); }
+    100% { opacity: 0; transform: scale(1.8); }
 }
